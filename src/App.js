@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import UserComponent from './UserComponent';
+import TaskComponent from './TaskComponent';
+import ServiceProvider from './services';
+
+import UserService from "./services/user-service";
+import TasksService from './services/task-service';
+
+const services = [
+  UserService,
+  TasksService
+]
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ServiceProvider services={services}>
+      <div className="App">
+        <div>
+          <UserComponent />
+          <TaskComponent />
+        </div>
+      </div>
+    </ServiceProvider>
   );
 }
 
